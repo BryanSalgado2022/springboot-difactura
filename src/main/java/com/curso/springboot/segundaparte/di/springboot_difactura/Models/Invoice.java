@@ -3,6 +3,7 @@ package com.curso.springboot.segundaparte.di.springboot_difactura.Models;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +13,11 @@ public class Invoice {
     @Autowired
     private Client client;
 
-    @Value("${invoice.description}")
+    @Value("${invoice.description.office}")
     private String description;
     
     @Autowired
+    @Qualifier("default")
     private List<Item> items;
 
     public Client getClient() {
@@ -38,7 +40,16 @@ public class Invoice {
     }
 
     public int getTotal(){
-        return 0;
+        /*int total = 0;
+        for (Item item : items) {
+            total += item.getImport();
+        }*/
+
+        //API STREAM DE JAVA
+        return items.stream()
+        .map(item -> item.getImport())
+        .reduce(0, (sum, item) -> sum + item);
+        
     }
     
 }
