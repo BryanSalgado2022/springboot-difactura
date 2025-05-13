@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class Invoice {
 
@@ -19,6 +21,11 @@ public class Invoice {
     @Autowired
     @Qualifier("default")
     private List<Item> items;
+
+    @PostConstruct
+    public void init(){
+        System.out.println("Creando el componente de la factura");
+    }
 
     public Client getClient() {
         return client;
