@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Component
 public class Invoice {
@@ -25,6 +27,13 @@ public class Invoice {
     @PostConstruct
     public void init(){
         System.out.println("Creando el componente de la factura");
+        client.setName(client.getName().concat(" David"));
+        description = description.concat(" del cliente").concat(client.getName()).concat(" "). concat(client.getApellido());
+    }
+    
+    @PreDestroy
+    public void destroy(){
+        System.out.println("Destruyendo el componente o Bean Invoice");
     }
 
     public Client getClient() {
