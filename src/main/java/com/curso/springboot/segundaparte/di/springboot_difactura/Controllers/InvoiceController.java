@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.curso.springboot.segundaparte.di.springboot_difactura.Models.Client;
 import com.curso.springboot.segundaparte.di.springboot_difactura.Models.Invoice;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
